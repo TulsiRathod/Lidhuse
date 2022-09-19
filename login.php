@@ -8,7 +8,6 @@ if (isset($_SESSION['auth'])) {
 }
 
 include('include/header.php');
-include('./functions/myfunction.php');
 ?>
 <div class="py-5">
     <div class="container">

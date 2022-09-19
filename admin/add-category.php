@@ -3,7 +3,7 @@ include('include/header.php');
 include('../middleware/adminMiddleware.php');
 ?>
 
-< class="container">
+<div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="card">

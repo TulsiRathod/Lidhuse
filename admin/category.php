@@ -31,7 +31,7 @@ include('../middleware/adminMiddleware.php');
                                         <td><?=$item['id']?></td>
                                         <td><?=$item['name']?></td>
                                         <td><img src="../uploads/<?=$item['image'];?>" alt="<?=$item['image']?>" height="50"></td>
-                                        <td><?=$item['status']=='0'?"Visible":"Hidden" ?></td>
+                                        <td><?=$item['status']=='1'?"Visible":"Hidden" ?></td>
                                         <td><a href="edit-category.php?id=<?=$item['id']?>" class="btn btn-sm btn-primary">Edit</a>
                                             <form action="code.php" method="POST">
                                                 <input type="hidden" name="category_id" value="<?=$item['id']?>">

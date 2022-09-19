@@ -39,7 +39,7 @@ include('../middleware/adminMiddleware.php');
                                         <input type="file" name="image" class="form-control">
                                         <label for="">Current Image</label>
                                         <input type="hidden" name="old_image" value="<?=$data['image']?>">
-                                        <img src="../uploads/<?=$data['name']?>.png" class="mt-2" height="50" width="50" alt="">
+                                        <img src="../uploads/<?=$data['image']?>" class="mt-2" height="50" width="50" alt="">
                                     </div>
                                     <div class="col-md-12">
                                         <label for="">Meta Title</label>

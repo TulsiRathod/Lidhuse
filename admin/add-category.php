@@ -26,8 +26,8 @@ include('../middleware/adminMiddleware.php');
                                 <textarea rows="3" name="description" placeholder="Enter Description" class="form-control"></textarea>
                             </div>
                             <div class="col-md-12">
-                                <label for=""></label>
-                                <input type="file" name="image" class="form-control">
+                                <label for="">Select Image</label>
+                                <input type="file" name="image" class="form-control" required>
                             </div>
                             <div class="col-md-12">
                                 <label for="">Meta Title</label>

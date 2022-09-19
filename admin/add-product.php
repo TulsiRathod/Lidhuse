@@ -70,8 +70,8 @@ include('../middleware/adminMiddleware.php');
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <label for=""></label>
-                                <input type="file" name="image" class="form-control">
+                                <label for="">Select Image</label>
+                                <input type="file" name="image" class="form-control" required>
                             </div>
                             <div class="col-md-12">
                                 <label for="">Meta Title</label>
@@ -87,7 +87,7 @@ include('../middleware/adminMiddleware.php');
                             </div>
 
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary" name="add_product_btn">Save</button>
+                                <button type="submit" class=" mt-3 btn btn-primary" name="add_product_btn">Save</button>
                             </div>
                         </div>
                     </form>

@@ -37,8 +37,7 @@ if(isset($_POST['add_category_btn'])){
     $description=$_POST['description'];
     $meta_title=$_POST['meta_title'];
     $meta_description=$_POST['meta_description'];
-    $meta_keywords=$_POST['meta_keywords'];
-    
+    $meta_keywords=$_POST['meta_keywords']; 
     $status=isset($_POST['status'])?'1':'0';
     $popular=isset($_POST['popular'])?'1':'0';
 
@@ -47,7 +46,7 @@ if(isset($_POST['add_category_btn'])){
 
     if($new_image!=""){
         $image_ext=pathinfo($new_image,PATHINFO_EXTENSION);
-        $update_filename=$time().'.'.$image_ext;
+        $update_filename=time().'.'.$image_ext;
     }else{
         $update_filename=$old_image;
     }
@@ -136,30 +135,25 @@ if(isset($_POST['add_category_btn'])){
     $description=$_POST['description'];
     $original_price=$_POST['original_price'];
     $selling_price=$_POST['selling_price'];
-    
     $qty=$_POST['qty'];
     $status=isset($_POST['status'])?'1':'0';
     $trending=isset($_POST['trending'])?'1':'0';
-    
     $meta_title=$_POST['meta_title'];
     $meta_description=$_POST['meta_description'];
     $meta_keywords=$_POST['meta_keywords'];
-         
-    $image_ext =pathinfo($image,PATHINFO_EXTENSION);
-    $filename=time().'.'.$image_ext;
-
+ 
     $new_image =$_FILES['image']['name'];
     $old_image=$_POST['old_image'];
+    $path="../uploads";
 
     if($new_image!=""){
         $image_ext=pathinfo($new_image,PATHINFO_EXTENSION);
-        $update_filename=$time().'.'.$image_ext;
+        $update_filename=time().'.'.$image_ext;
     }else{
         $update_filename=$old_image;
     }
-    $path="../uploads";
 
-    $update_product_query="UPDATE prodicts  SET category_id='$category_id',name='$name',slug='$slug',small_description='$small_description',description='$description',original_price='$original_price',selling_price='$selling_price',qty='$qty',status='$status',trending='$trending',meta_title='$meta_title',meta_description='$meta_description',meta_keywords='$meta_keywords',image='$update_filename' WHERE id='$product_id'";
+    $update_product_query="UPDATE products  SET category_id='$category_id',name='$name',slug='$slug',small_description='$small_description',description='$description',original_price='$original_price',selling_price='$selling_price',qty='$qty',status='$status',trending='$trending',meta_title='$meta_title',meta_description='$meta_description',meta_keywords='$meta_keywords',image='$update_filename' WHERE id='$product_id'";
     $update_product_query_run= mysqli_query($con,$update_product_query);
 
     if($update_product_query_run){

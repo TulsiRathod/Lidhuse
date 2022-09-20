@@ -15,7 +15,7 @@ if (isset($_SESSION["message"])) {
 ?>
 
 <div class="container">
-<h1>Hello World</h1>
+<h1>Hello User! <i class="fa fa-user"></i></h1>
 <button class="btn btn-primary">Testing</button>
 </div>
 </div>

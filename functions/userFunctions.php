@@ -15,6 +15,4 @@ function redirect($url,$message){
     header('Location:'.$url);
     exit();
 }
-
-
 ?> 

@@ -38,7 +38,7 @@ include('../middleware/adminMiddleware.php');
                                         </td>
                                         <td>   
                                         <form action="code.php" method="POST">
-                                                <input type="hidden" name="category_id" value="<?=$item['id']?>">
+                                                <input type="hidden" name="product  _id" value="<?=$item['id']?>">
                                                 <button type="submit" class="btn btn-sm btn-danger" name="delete_product_btn">Delete</button>
                                             </form>
                                         </td>

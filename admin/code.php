@@ -45,7 +45,8 @@ if(isset($_POST['add_category_btn'])){
     $old_image=$_POST['old_image'];
 
     if($new_image!=""){
-        $image_ext=pathinfo($new_image,PATHINFO_EXTENSION);
+        // $image_ext=$new_image;
+        $image_ext=pathinfo($new_image, PATHINFO_EXTENSION);
         $update_filename=time().'.'.$image_ext;
     }else{
         $update_filename=$old_image;
@@ -57,10 +58,10 @@ if(isset($_POST['add_category_btn'])){
 
     if($update_query_run){
         if($_FILES['image']['name']!=""){
-            move_uploaded_file($_FILES['image']['tmp_name'],$path."/".$new_image);
+            move_uploaded_file($_FILES['image']['tmp_name'],$path."/".$update_filename);
             if(file_exists("../uploads/".$old_image))
             {
-                unlink("../uploads".$old_image);
+                unlink("../uploads/".$old_image);
             }
         }
         redirect("edit-category.php?id=$category_id","Category Updated Successfully");
@@ -78,6 +79,8 @@ if(isset($_POST['add_category_btn'])){
 
     $delete_query="DELETE FROM categories WHERE id='$category_id'";
     $delete_query_run=mysqli_query($con,$delete_query);
+    $delete_query_pro="DELETE FROM products WHERE category_id='$category_id'";
+    $delete_query_pro_run=mysqli_query($con,$delete_query_pro);
     if($delete_query_run){
         if(file_exists("../uploads/".$image)){
             unlink("../uploads/".$image);
@@ -147,21 +150,21 @@ if(isset($_POST['add_category_btn'])){
     $path="../uploads";
 
     if($new_image!=""){
-        $image_ext=pathinfo($new_image,PATHINFO_EXTENSION);
+        $image_ext=pathinfo($new_image, PATHINFO_EXTENSION);
         $update_filename=time().'.'.$image_ext;
     }else{
         $update_filename=$old_image;
     }
 
-    $update_product_query="UPDATE products  SET category_id='$category_id',name='$name',slug='$slug',small_description='$small_description',description='$description',original_price='$original_price',selling_price='$selling_price',qty='$qty',status='$status',trending='$trending',meta_title='$meta_title',meta_description='$meta_description',meta_keywords='$meta_keywords',image='$update_filename' WHERE id='$product_id'";
+    $update_product_query="UPDATE products SET category_id='$category_id',name='$name',slug='$slug',small_description='$small_description',description='$description',original_price='$original_price',selling_price='$selling_price',qty='$qty',status='$status',trending='$trending',meta_title='$meta_title',meta_description='$meta_description',meta_keywords='$meta_keywords',image='$update_filename' WHERE id='$product_id'";
     $update_product_query_run= mysqli_query($con,$update_product_query);
 
     if($update_product_query_run){
         if($_FILES['image']['name']!=""){
-            move_uploaded_file($_FILES['image']['tmp_name'],$path."/".$new_image);
+            move_uploaded_file($_FILES['image']['tmp_name'],$path."/".$update_filename);
             if(file_exists("../uploads/".$old_image))
             {
-                unlink("../uploads".$old_image);
+                unlink("../uploads/".$old_image);
             }
         }
         redirect("edit-product.php?id=$product_id","Category Updated Successfully");
@@ -169,7 +172,26 @@ if(isset($_POST['add_category_btn'])){
         redirect("edit-product.php?id=$product_id","Something Went Wrong");
     }
 
-}else{
+}else if(isset($_POST['delete_product_btn'])){
+     $product_id=mysqli_real_escape_string($con,$_POST['product_id']);
+
+    $product_query="SELECT * FROM categories WHERE id='$product_id'";
+    $product_query_run=mysqli_query($con,$product_query);
+    $product_data=mysqli_fetch_array($product_query_run);
+    $image=$product_data['image'];
+
+    $delete_query="DELETE FROM products WHERE id='$product_id'";
+    $delete_query_run=mysqli_query($con,$delete_query);
+    if($delete_query_run){
+        if(file_exists("../uploads/".$image)){
+            unlink("../uploads/".$image);
+        }
+        redirect("product.php","Product Deleted Successfully");
+    }else{
+        redirect("product.php","Something Went Wrong");
+    }
+}
+else{
     header('Location: ../index.php');
 }
 ?>
